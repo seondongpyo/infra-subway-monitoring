@@ -40,11 +40,10 @@ public class MapService {
         Station targetStation = stationService.findById(target);
         SubwayPath subwayPath = pathService.findPath(lines, sourceStation, targetStation);
 
-        log.info("Find a path from {} to {} = {} ({})",
+        log.info("Find a path from {} to {} = {}",
             kv("source", sourceStation.getName()),
             kv("target", targetStation.getName()),
-            kv("distance", subwayPath.calculateDistance()),
-            kv("stations", subwayPath.getStations().stream().map(Station::getName).collect(Collectors.toList())));
+            kv("distance", subwayPath.calculateDistance()));
 
         return PathResponseAssembler.assemble(subwayPath);
     }
