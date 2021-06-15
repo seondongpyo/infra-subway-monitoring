@@ -3,6 +3,7 @@ package nextstep.subway.map.application;
 import static net.logstash.logback.argument.StructuredArguments.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +41,10 @@ public class MapService {
         SubwayPath subwayPath = pathService.findPath(lines, sourceStation, targetStation);
 
         log.info("Find a path from {} to {} = {} ({})",
-            kv("source", sourceStation),
-            kv("target", targetStation),
+            kv("source", sourceStation.getName()),
+            kv("target", targetStation.getName()),
             kv("distance", subwayPath.calculateDistance()),
-            kv("stations", subwayPath.getStations()));
+            kv("stations", subwayPath.getStations().stream().map(Station::getName).collect(Collectors.toList())));
 
         return PathResponseAssembler.assemble(subwayPath);
     }
