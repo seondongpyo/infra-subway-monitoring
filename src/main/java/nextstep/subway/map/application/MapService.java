@@ -40,7 +40,7 @@ public class MapService {
         Station targetStation = stationService.findById(target);
         SubwayPath subwayPath = pathService.findPath(lines, sourceStation, targetStation);
 
-        log.info("Find a path from {} to {} = {}",
+        log.info("{} {} {}",
             kv("source", sourceStation.getName()),
             kv("target", targetStation.getName()),
             kv("distance", subwayPath.calculateDistance()));
