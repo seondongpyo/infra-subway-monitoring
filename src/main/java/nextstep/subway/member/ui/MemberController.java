@@ -22,7 +22,8 @@ import nextstep.subway.member.dto.MemberResponse;
 @RestController
 public class MemberController {
 
-    private final Logger log = LoggerFactory.getLogger("file");
+    private final Logger consoleLog = LoggerFactory.getLogger("file");
+    private final Logger fileLog = LoggerFactory.getLogger("file");
     private MemberService memberService;
 
     public MemberController(MemberService memberService) {
@@ -32,7 +33,8 @@ public class MemberController {
     @PostMapping("/members")
     public ResponseEntity createMember(@RequestBody MemberRequest request) {
         MemberResponse member = memberService.createMember(request);
-        log.info("{} has signed in", request.getEmail());
+        consoleLog.info("{} has signed in", request.getEmail());
+        fileLog.info("{} has signed in", request.getEmail());
         return ResponseEntity.created(URI.create("/members/" + member.getId())).build();
     }
 

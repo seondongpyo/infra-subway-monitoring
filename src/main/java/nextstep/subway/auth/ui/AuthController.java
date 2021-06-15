@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
-    private final Logger log = LoggerFactory.getLogger("file");
+    private final Logger consoleLog = LoggerFactory.getLogger("console");
+    private final Logger fileLog = LoggerFactory.getLogger("file");
     private AuthService authService;
 
     public AuthController(AuthService authService) {
@@ -24,7 +25,8 @@ public class AuthController {
     @PostMapping("/login/token")
     public ResponseEntity<TokenResponse> login(@RequestBody TokenRequest request) {
         TokenResponse token = authService.login(request);
-        log.info("{} has logged in", request.getEmail());
+        fileLog.info("{} has logged in", request.getEmail());
+        consoleLog.info("{} has logged in", request.getEmail());
 
         return ResponseEntity.ok().body(token);
     }
