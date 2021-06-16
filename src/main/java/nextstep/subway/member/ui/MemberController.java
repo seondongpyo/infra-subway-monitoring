@@ -22,7 +22,7 @@ import nextstep.subway.member.dto.MemberResponse;
 @RestController
 public class MemberController {
 
-    private final Logger fileLog = LoggerFactory.getLogger("fileLog");
+    private final Logger fileLog = LoggerFactory.getLogger("file");
     private MemberService memberService;
 
     public MemberController(MemberService memberService) {
